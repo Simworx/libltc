@@ -38,3 +38,4 @@ autom4te.cache/
 
 ltc.pc
 Doxyfile
+vs2015/libltc/Debug/

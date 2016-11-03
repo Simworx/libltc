@@ -121,11 +121,11 @@ static void smpte_set_timezone_string(LTCFrame *frame, SMPTETimecode *stime) {
 
 	for (i = 0 ; smpte_time_zones[i].code != 0xFF ; i++) {
 		if ( smpte_time_zones[i].code == code ) {
-			strcpy(timezone, smpte_time_zones[i].timezone);
+			strcpy_s(timezone, sizeof(timezone), smpte_time_zones[i].timezone);
 			break;
 		}
 	}
-	strcpy(stime->timezone, timezone);
+	strcpy_s(stime->timezone, sizeof(timezone), timezone);
 }
 
 static void smpte_set_timezone_code(SMPTETimecode *stime, LTCFrame *frame) {
@@ -174,7 +174,7 @@ void ltc_frame_to_time(SMPTETimecode *stime, LTCFrame *frame, int flags) {
 		stime->years  = 0;
 		stime->months = 0;
 		stime->days   = 0;
-		sprintf(stime->timezone,"+0000");
+		sprintf_s(stime->timezone, sizeof(stime->timezone), "+0000");
 	}
 
 	stime->hours = frame->hours_units + frame->hours_tens*10;
